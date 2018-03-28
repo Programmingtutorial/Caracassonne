@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define length 14
+#define width 14
+
+void initializeBoard();
+void printBoard();
+void placeTile();
+
+int field[length][width];
+
+int main() {
+    initializeBoard();
+    printBoard();
+    // Tutaj powninna bya nieskonczona petla, ale funkcje s1 typu void.
+    placeTile();
+    printBoard();
+
+    return 0;
+}
+// Trzeba dopisaa ustawienie pierwszego elementu.
+void initializeBoard() {
+    int i, j;
+    for(i = 0; i < length; i++) {
+        for(j = 0; j < width; j++) {
+            field[i][j] = 0;
+        }
+    }
+}
+/* Funkcja drukuje tablice na ekran. */
+void printBoard() {
+    int i, j;
+    printf("   ABCDEFGHIJKLMN\n\n");
+    for(i = 0; i < length; i++) {
+        /* Wyrównanie planszy. Jeoli i > 9 dodajemy dodatkow1 spacje. */
+        if(i >= 9)
+            printf("%d ", i+1);
+        else
+            printf("%d  ", i+1);
+
+        for(j = 0; j < width; j++) {
+            printf("%d", field[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+/* Funkcja pobiera wspó3rzedna od u?ytkownika i ustawia puzzel w podanym miejscu. */
+void placeTile() {
+    char c;
+    int y, x;
+    // Pobieram wspó3rzedne od u?ytkownika.
+    scanf("%c", &c);
+    scanf("%d", &y);
+
+    x = c - 'A';    // Zamiana chara na wspó3rzedn1 x-ow1 (int).
+    y = y - 1;      // Odjecie jedynki, bo tablice unmerowane od 0.
+
+    field[y][x] = 1;
+
+}
