@@ -1,0 +1,14 @@
+ffrft
+fffft
+cccc*
+rcrf_
+cfff_
+fcfc_
+fccf_
+crrf_
+rcfr_
+rcrr_
+rfrf_
+ffrr_
+frrr_
+rrrr_
