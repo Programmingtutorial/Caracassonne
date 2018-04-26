@@ -9,6 +9,9 @@
 #define tile_length 6
 
 
+/*Function reads tiles from the file and put them into array.
+It takes as a parameters file with tiles and pointer to Tiles structure. 
+It returns the pointer to the Tiles structure. */
 Tiles* initializeTileArray(FILE *tile, Tiles *t) {
 	char s = '0';
 	int i = 0, k;
@@ -36,15 +39,19 @@ Tiles* initializeTileArray(FILE *tile, Tiles *t) {
 	return t;
 }
 
-/*Function prints tiles which can be used.*/
+/*Function prints tiles which can be used.
+It takes as a parameter a pointer to the Tiles structure. 
+It returns NO_TILES if there are no tiles or 1 otherwise. */
 int printAvailableTiles(Tiles *t) {
 	const char *empty = "00000";
-
+	
+	// Checking if there are any tiles (checkNumberofTiles() function).
 	checkNumberOfTiles(t);
 	if (t->no_tiles == NO_TILES) {
 		printf("There are no tiles left.");
 		return NO_TILES;
 	}
+	// Printing available tiles.
 	printf("Available Tiles: \n");
 	for (int i = 0; i < tiles_number; i++) {
 		if (strcmp(t->tiles[i], empty) != 0)
@@ -62,7 +69,9 @@ Tiles* deleteUsedTile(int number, Tiles *t) {
 	return t;
 }
 
-/*Function takes number of tile(number) and letter (c) which means direction of rotation. */
+/*Function change the string given as a number from tiles array to string "00000".
+It takes as a parameters number of tile to "delete" and pointer to Tiles structure.
+It returns the pointer to the Tiles structure.*/
 Tiles* rotateTile(int number, Tiles *t) {
 	
 	switch (t->rotate) {
@@ -117,7 +126,6 @@ Tiles* rotateLeft(int number, Tiles *t) {
 	return t;
 }
 
-// Does not work well!!!
 Tiles* rotateDown(int number, Tiles *t) {
 	char temp;
 	
