@@ -1,22 +1,22 @@
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "tile.h"
+#include "board.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 /*
 TO DO LIST:
-1. Poprawiæ obracanie klocka do do³u.
-2. Przetestowaæ obracanie klocków.
-3. Zmienic warunki na stawianie klocków (aktualnie w sytuacjach krañcowych, 
-takich jak pole 1A przy sprawdzaniu do góry i na lewo, warunki wychodz¹ poza planszê).
-4. Dodaæ usuwanie z listy tile'ów (z pliku txt) u¿ytego tile'a (dotyczy auto mode).
-5. Dopisaæ manual dla u¿ytkownika, który bêdzie móg³ w³¹czyæ przy wpisywaniu ruchu.
-6. Poprawiæ drukowanie planszy na ekran.
+1. Poprawic obracanie klocka do doÂ³u.
+2. Przetestowac obracanie klockÃ³w.
+3. Zmienic warunki na stawianie klockÃ³w (aktualnie w sytuacjach kraÃ±cowych, 
+takich jak pole 1A przy sprawdzaniu do gÃ³ry i na lewo, warunki wychodza poza plansze).
+4. Dodac usuwanie z listy tile'Ã³w (z pliku txt) uÂ¿ytego tile'a (dotyczy auto mode).
+5. Dopisac manual dla uzytkownika, ktÃ³ry bedzie mÃ³gl wlaczyc przy wpisywaniu ruchu.
+6. Poprawic drukowanie planszy na ekran.
 7. ALOGRYTM WYBIERANIA POLA I KLOCKA - AUTO MODE. !!!!
-8. Dodaæ komentarze.
-9. Przetestowaæ dzia³anie gry.
+8. Dodac komentarze.
+9. Przetestowac dzialanie gry.
 */
 
 int main() {
