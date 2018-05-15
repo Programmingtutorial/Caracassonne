@@ -1,6 +1,6 @@
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "board.h"
+#include "tile.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -75,7 +75,7 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 		return ERROR;
 	}
 
-	// Dodaj warunki na wychodzenie poza planszê. !!!!!!!
+	// Dodaj warunki na wychodzenie poza planszÃª. !!!!!!!
 
 	// Checks if selected tile fits.
 	//R = 1, L = 3, U = 0, D = 2;	from type of ennum (tile.h)
