@@ -1,9 +1,9 @@
 #ifndef AUTO_H
 #define AUTO_H
 
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "tile.h"
+#include "board.h"
+#include "interactive.h"
 
 #include <stdlib.h>
 #include <stdio.h>
