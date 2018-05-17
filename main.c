@@ -10,10 +10,13 @@ TO DO LIST:
 1. Poprawic obracanie klocka do do³u.
 2. Przetestowac obracanie klocków.
 3. Zmienic warunki na stawianie klocków (aktualnie w sytuacjach krañcowych, 
-takich jak pole 1A przy sprawdzaniu do góry i na lewo, warunki wychodza poza plansze).
-4. Dodac usuwanie z listy tile'ów (z pliku txt) u¿ytego tile'a (dotyczy auto mode).
-5. Dopisac manual dla uzytkownika, który bedzie mógl wlaczyc przy wpisywaniu ruchu.
-6. Poprawic drukowanie planszy na ekran.
+takich jak pole 1A przy sprawdzaniu do góry i na lewo, warunki wychodza poza plansze) + przestować każdy warunek.
+4. Dodac usuwanie z listy tile'ów (z pliku txt) u¿ytego tile'a (dotyczy auto mode) - ZROBIONE.
+5. Dopisac manual dla uzytkownika. - Julek.
+6. Poprawic drukowanie planszy na ekran (opcjonalnie).
+Przetestować interactive mode.
+
+Auto mode.
 7. ALOGRYTM WYBIERANIA POLA I KLOCKA - AUTO MODE. !!!!
 8. Dodac komentarze.
 9. Przetestowac dzialanie gry.
