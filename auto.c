@@ -1,16 +1,16 @@
 #include "auto.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "tile.h"
+#include "board.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 /*
-Zak³adam, ze program w pierwszym ruchu postawi klocek na œrodku planszy. 
-Program bêdzie próbowa³ uk³adaæ klocki od prawej strony.
-Wybiera kolejne klocki z tablicy i sprawdza czy zgadzaj¹ siê z s¹siadami.
-Jeœli nie, bierze kolejny klocek (albo przechodzi dalej (?)).
+ZakÂ³adam, ze program w pierwszym ruchu postawi klocek na Å“rodku planszy. 
+Program bÃªdzie prÃ³bowaÂ³ ukÂ³adaÃ¦ klocki od prawej strony.
+Wybiera kolejne klocki z tablicy i sprawdza czy zgadzajÂ¹ siÃª z sÂ¹siadami.
+JeÅ“li nie, bierze kolejny klocek (albo przechodzi dalej (?)).
 */
 
 Board* initializeBoard(FILE *board_player, Board *p) {
