@@ -41,7 +41,12 @@ Board* checkBoard(Board *p);
 /**
 *
 */
-int takeTile(Tiles *t);
+int takeTile(int number, Tiles *t);
+
+/**
+*
+*/
+int canPlaceTileAUTO(int number, Board *p, Tiles *t);
 
 /**
 *
