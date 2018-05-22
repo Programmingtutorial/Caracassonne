@@ -1,7 +1,7 @@
 #include "auto.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "tile.h"
+#include "board.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,12 +9,12 @@
 #include <string.h>
 
 /*
-ZrÛb funkcje do stawiania klocka. Najpierw sprawdza czy jest juø coú na planszy. 
-Jeúli nie to stawiam na úrodku. 
-Jeúli tak to weü pierwszy z tablicy klockÛw i sprÛbuj ustawiÊ go na znalezionym miejscu. 
-SprÛbuj wszystkich rotacji. 
-Jeúli nie pasuje weü kolejny i zrÛb to samo.
-Jak wykorzystasz wszystkie klocki to znajdø inne miejsce i zrÛb to samo.
+Zr√≥b funkcje do stawiania klocka. Najpierw sprawdza czy jest ju¬ø co≈ì na planszy. 
+Je≈ìli nie to stawiam na ≈ìrodku. 
+Je≈ìli tak to we≈∏ pierwszy z tablicy klock√≥w i spr√≥buj ustawi√¶ go na znalezionym miejscu. 
+Spr√≥buj wszystkich rotacji. 
+Je≈ìli nie pasuje we≈∏ kolejny i zr√≥b to samo.
+Jak wykorzystasz wszystkie klocki to znajd¬ø inne miejsce i zr√≥b to samo.
 */
 
 Board* initializeBoard(FILE *board_player, Board *p) {
@@ -147,7 +147,7 @@ Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
 		else {
 			printf("JESZCZE NIE MA\n");
 			/*number = takeTile(t);
-			// Sprawdü czy po obrocie w kaødπ stronÍ pasuje. 
+			// Sprawd≈∏ czy po obrocie w ka¬ød¬π stron√™ pasuje. 
 			if (canplaceTile(number, p, t) != OK) {
 				// TU POPRAW.
 				rotateRight(number, t);
