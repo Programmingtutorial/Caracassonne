@@ -80,26 +80,25 @@ Board* selectPlace(Board *p) {
 	return p;
 }
 
-Tiles* makeMove(Board *player, Tiles *t, FILE *board_player, FILE *tile) {
+Tiles* makeMove(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
 	int stop, number;
 
-	printBoard(player, board_player);
-	stop = printAvailableTiles(t);
+	printBoard2(p);
+	stop = printAvailableTiles2(t);
 	if (stop == 1) {
 		number = selectTile(t);
-		selectPlace(player);
+		selectPlace(p);
 		selectRotation(t);
 		rotateTile(number, t);
-		while (canplaceTile(number, player, t) != 1) {
+		while (canplaceTile(number, p, t) != OK) {
 			number = selectTile(t);
-			selectPlace(player);
+			selectPlace(p);
 			selectRotation(t);
 			rotateTile(number, t);
 		}
-		placeTile(number, t, player);
+		placeTile(number, t, p);
 		deleteUsedTile(number, t);
-		//deleteUsedTileAUTOMODE(number, tile);
-		printBoard(player, board_player);
+		printBoard2(p);
 	}
 	else if (stop == NO_TILES) {
 		t->no_tiles = NO_TILES;
