@@ -99,7 +99,7 @@ Board* checkBoard(Board *p) {
 			if (strcmp(p->board[i][j], empty) != 0) {
 				p->firstPlacing = 1;
 				p->row = i;
-				p->column = j;
+				p->column = j - 1;	// O jedną kolumnę w lewo od już postawionego klocka.
 				breaker = 1;
 				break;
 			}
@@ -130,8 +130,34 @@ int takeTile(Tiles *t) {
 	return i;
 }
 
+int canPlaceTileAUTO(int number, Board *p, Tiles *t) {
+
+	if (canplaceTile(number, p, t) == OK) {
+		return OK;
+	}
+	else {	// Tu obracam klocek w każdą stronę i patrze czy pasuje 
+		rotateRight(number, t);
+		if (canplaceTile(number, p, t) == OK) {
+			return OK;
+		}
+		else {
+			rotateLeft(number, t);
+			if (canplaceTile(number, p, t) == OK) {
+				return OK;
+			}
+			else {
+				rotateDown(number, t);
+				if (canplaceTile(number, p, t) == OK) {
+					return OK;
+				}
+			}
+		}
+	}
+	return ERROR;
+}
+
 Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
-	int stop, number, counter = 0;
+	int stop, number, counter = 0, placed = 0;
 
 	initializeBoard(board_player, p);
 	initializeTileArray(tile, t);
@@ -139,22 +165,27 @@ Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
 	stop = printAvailableTiles(t);
 	if (stop == OK) {
 		checkBoard(p);
-		if (p->firstPlacing == 0) {
+		if (p->firstPlacing == 0) {	//DZIAŁA
 			number = randomFirstTile();
 			firstMove(number, t, p);
 			deleteUsedTile(number, t);
 		}
 		else {
-			printf("JESZCZE NIE MA\n");
-			/*number = takeTile(t);
-			// SprawdŸ czy po obrocie w ka¿d¹ stronê pasuje. 
-			if (canplaceTile(number, p, t) != OK) {
-				// TU POPRAW.
-				rotateRight(number, t);
-				rotateLeft(number, t);
-				//rotateDown(number, t);
-			} */
-
+			number = takeTile(0, t);
+			printf("TILE NUMBER: %d\n", number);
+			placed = placeTileAUTO(number, p, t);
+			while ((placed = placeTileAUTO(number, p, t)) != OK && number < 14) {
+				number = takeTile(t->checkedTile + 1, t);
+				printf("TILE NUMBER: %d\n", number);
+			}
+			if (placed == OK) {
+				placeTile(number, t, p);
+				deleteUsedTile(number, t);
+			}
+			else if (number == 14) {
+				printf("Nie udało się znaleźć klocka, ktory pasuje :c \n");
+				//findNextTile(p);
+			}
 		}
 		printBoard(p);
 	}
