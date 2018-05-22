@@ -1,6 +1,6 @@
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "board.h"
+#include "tile.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -100,7 +100,6 @@ Board* setBoard(Board *p) {
 	return p;
 }
 
-
 int canplaceTile(int tile, Board *p, Tiles *t) {
 	const char *empty = "00000";
 	int right = 0, left = 0, up = 0, down = 0;
@@ -123,28 +122,42 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 		return ERROR;
 	}
 
-	// Dodaj warunki na wychodzenie poza plansz�. !!!!!!!
-
 	// Checks if selected tile fits.
 	//R = 1, L = 3, U = 0, D = 2;	from type of ennum (tile.h)
-	if (strcmp(p->board[p->row][(p->column) + 1], empty) != 0) {
-		right = checksPosition(tile, R, 0, 1, p, t);
-		if (right == ERROR)
+	// Lewy górny róg.
+	if (p->row == 0 && p->column == 0) {
+		right = checkPosition(tile, R, 0, 1, p, t);
+		down = checkPosition(tile, D, -1, 0, p, t);
+		if (right == ERROR || down == ERROR)
 			return ERROR;
 	}
-	if (strcmp(p->board[p->row][(p->column) - 1], empty) != 0) {
-		left = checksPosition(tile, L, 0, -1, p, t);
-		if (left == ERROR)
+	// Prawy górny róg.
+	else if (p->row == 0 && p->column == length - 1) {
+		left = checkPosition(tile, L, 0, -1, p, t);
+		down = checkPosition(tile, D, -1, 0, p, t);
+		if (left == ERROR || down == ERROR)
 			return ERROR;
 	}
-	if (strcmp(p->board[(p->row) + 1][p->column], empty) != 0) {
-		up = checksPosition(tile, U, 0, 1, p, t);
-		if (up == ERROR)
+	// Lewy dolny róg.
+	else if (p->row == length - 1 && p->column == 0) {
+		right = checkPosition(tile, R, 0, 1, p, t);
+		up = checkPosition(tile, U, 1, 0, p, t);
+		if (right == ERROR || up == ERROR)
 			return ERROR;
 	}
-	if (strcmp(p->board[(p->row) - 1][p->column], empty) != 0) {
-		down = checksPosition(tile, D, -1, 0, p, t);
-		if (down == ERROR)
+	// Prawy dolny róg.
+	else if (p->row == length - 1 && p->column == length - 1) {
+		left = checkPosition(tile, L, 0, -1, p, t);
+		up = checkPosition(tile, U, 1, 0, p, t);
+		if (left == ERROR || up == ERROR)
+			return ERROR;
+	}
+	else {
+		right = checkPosition(tile, R, 0, 1, p, t);
+		left = checkPosition(tile, L, 0, -1, p, t);
+		up = checkPosition(tile, U, 1, 0, p, t);
+		down = checkPosition(tile, D, -1, 0, p, t);
+		if (right == ERROR || left == ERROR || up == ERROR || down == ERROR)
 			return ERROR;
 	}
 
@@ -156,16 +169,22 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 	return OK;
 }
 
-/* Funkcja sprwdza czy klocek na miejscu (row, column) patrz�c od wybranego klocka (int tile) pasuje do niego.
-Na przyk�ad dla row = 0, column = 1 funkcja sprawdza klocek w kolumnie na prawo.
-Dla row = 1, column = 1 funkcja sprawdza klocek w rz�dzie powy�ej. */
-int checksPosition(int tile, int direction, int row, int column, Board *p, Tiles *t) {
-	
-	if (t->tiles[tile][direction] != p->board[(p->row) + row][(p->column) + column][direction]) {
-		printf("Selected tile does not fit.\n");
-		return ERROR;
+/* Funkcja sprwdza czy klocek na miejscu (row, column) patrz¹c od wybranego klocka (int tile) pasuje do niego.
+Na przyk³ad dla row = 0, column = 1 funkcja sprawdza klocek w kolumnie na prawo.
+Dla row = 1, column = 1 funkcja sprawdza klocek w rzêdzie powy¿ej. */
+int checkPosition(int tile, int direction, int row, int column, Board *p, Tiles *t) {
+	const char *empty = "00000";
+
+	if (strcmp(p->board[(p->row) + row][(p->column) + column], empty) != 0) {
+		if (t->tiles[tile][direction] != p->board[(p->row) + row][(p->column) + column][direction]) {
+			printf("Selected tile does not fit.\n");
+			return ERROR;
+		}
+		else
+			return OK;
 	}
-	return OK;
+
+	return 0;
 }
 
 
