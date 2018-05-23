@@ -204,11 +204,11 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 /* Funkcja sprwdza czy klocek na miejscu (row, column) patrz¹c od wybranego klocka (int tile) pasuje do niego.
 Na przyk³ad dla row = 0, column = 1 funkcja sprawdza klocek w kolumnie na prawo.
 Dla row = 1, column = 1 funkcja sprawdza klocek w rzêdzie powy¿ej. */
-int checkPosition(int tile, int direction, int row, int column, Board *p, Tiles *t) {
+int checkPosition(int tile, int directiontile, int directionplaced, int row, int column, Board *p, Tiles *t) {
 	const char *empty = "00000";
 
 	if (strcmp(p->board[(p->row) + row][(p->column) + column], empty) != 0) {
-		if (t->tiles[tile][direction] != p->board[(p->row) + row][(p->column) + column][direction]) {
+		if (t->tiles[tile][directiontile] != p->board[(p->row) + row][(p->column) + column][directionplaced]) {
 			printf("Selected tile does not fit.\n");
 			return ERROR;
 		}
