@@ -1,7 +1,7 @@
 #include "auto.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "tile.h"
+#include "board.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,12 +9,12 @@
 #include <string.h>
 
 /*
-Zrób funkcje do stawiania klocka. Najpierw sprawdza czy jest ju¿ coœ na planszy. 
-Jeœli nie to stawiam na œrodku. 
-Jeœli tak to weŸ pierwszy z tablicy klocków i spróbuj ustawiæ go na znalezionym miejscu. 
-Spróbuj wszystkich rotacji. 
-Jeœli nie pasuje weŸ kolejny i zrób to samo.
-Jak wykorzystasz wszystkie klocki to znajd¿ inne miejsce i zrób to samo.
+ZrÃ³b funkcje do stawiania klocka. Najpierw sprawdza czy jest juÂ¿ coÅ“ na planszy. 
+JeÅ“li nie to stawiam na Å“rodku. 
+JeÅ“li tak to weÅ¸ pierwszy z tablicy klockÃ³w i sprÃ³buj ustawiÃ¦ go na znalezionym miejscu. 
+SprÃ³buj wszystkich rotacji. 
+JeÅ“li nie pasuje weÅ¸ kolejny i zrÃ³b to samo.
+Jak wykorzystasz wszystkie klocki to znajdÂ¿ inne miejsce i zrÃ³b to samo.
 */
 
 Board* initializeBoard(FILE *board_player, Board *p) {
@@ -99,7 +99,12 @@ Board* checkBoard(Board *p) {
 			if (strcmp(p->board[i][j], empty) != 0) {
 				p->firstPlacing = 1;
 				p->row = i;
-				p->column = j-1;	// O jedn¹ kolumnê w lewo od ju¿ postawionego klocka.
+				if (j > 0)
+					p->column = j - 1;	// O jednÄ… kolumnÄ™ w lewo od juÅ¼ postawionego klocka.
+				else {
+					p->column = length - 1;
+					p->row = i - 1;
+				}
 				breaker = 1;
 				break;
 			}
@@ -135,7 +140,7 @@ int canPlaceTileAUTO(int number, Board *p, Tiles *t) {
 	if (canplaceTile(number, p, t) == OK) {
 		return OK;
 	}
-	else {	// Tu obracam klocek w ka¿d¹ stronê i patrze czy pasuje 
+	else {	// Tu obracam klocek w kaÂ¿dÂ¹ stronÃª i patrze czy pasuje 
 		rotateRight(number, t);
 		if (canplaceTile(number, p, t) == OK) {
 			return OK;
@@ -166,7 +171,7 @@ Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
 	if (stop == OK) {
 		checkBoard(p);
 		printf("row %d	column %d\n", p->row, p->column);
-		if (p->firstPlacing == 0) {	//DZIA£A
+		if (p->firstPlacing == 0) {	//DZIAÂ£A
 			number = randomFirstTile();
 			firstMove(number, t, p);
 			deleteUsedTile(number, t);
@@ -184,7 +189,7 @@ Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
 				deleteUsedTile(number, t);
 			}
 			else if (number == 14) {
-				printf("Nie uda³o siê znaleŸæ klocka, ktory pasuje :c \n");
+				printf("Nie udaÂ³o siÃª znaleÅ¸Ã¦ klocka, ktory pasuje :c \n");
 				//findNextTile(p);
 			}
 		}
