@@ -173,8 +173,8 @@ Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
 		else {
 			number = takeTile(0, t);
 			printf("TILE NUMBER: %d\n", number);
-			placed = placeTileAUTO(number, p, t);
-			while ((placed = placeTileAUTO(number, p, t)) != OK && number < 14) {
+			placed = canPlaceTileAUTO(number, p, t);
+			while ((placed = canPlaceTileAUTO(number, p, t)) != OK && number < 14) {
 				number = takeTile(t->checkedTile + 1, t);
 				printf("TILE NUMBER: %d\n", number);
 			}
