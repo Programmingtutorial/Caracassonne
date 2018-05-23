@@ -36,7 +36,7 @@ int canplaceTile(int tile, Board *p, Tiles *t);
 /**
 *
 */
-int checksPosition(int tile, int direction, int row, int column, Board *p, Tiles *t);
+int checkPosition(int tile, int directiontile, int directionplaced, int row, int column, Board *p, Tiles *t);
 
 /**
 *
