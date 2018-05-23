@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1\tile.h"
+#include "tile.h"
 
 #include <stdio.h>
 #include <stdlib.h>
