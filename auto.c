@@ -98,9 +98,10 @@ Board* checkBoard(Board *p) {
 		for (int j = 0; j < length; j++) {
 			if (strcmp(p->board[i][j], empty) != 0) {
 				p->firstPlacing = 1;
-				p->row = i;
-				if (j > 0)
+				if (j > 0) {
 					p->column = j - 1;	// O jedną kolumnę w lewo od już postawionego klocka.
+					p->row = i;
+				}
 				else {
 					p->column = length - 1;
 					p->row = i - 1;
