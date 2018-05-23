@@ -126,69 +126,69 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 	//R = 1, L = 3, U = 0, D = 2;	from type of ennum (tile.h)
 	// Lewy górny róg.
 	if (p->row == 0 && p->column == 0) {
-		right = checkPosition(tile, R, 0, 1, p, t);
-		down = checkPosition(tile, D, -1, 0, p, t);
+		right = checkPosition(tile, R, L, 0, 1, p, t);
+		down = checkPosition(tile, D, U, -1, 0, p, t);
 		if (right == ERROR || down == ERROR)
 			return ERROR;
 	}
 	// Prawy górny róg.
 	else if (p->row == 0 && p->column == length - 1) {
-		left = checkPosition(tile, L, 0, -1, p, t);
-		down = checkPosition(tile, D, -1, 0, p, t);
+		left = checkPosition(tile, L, R, 0, -1, p, t);
+		down = checkPosition(tile, D, U, -1, 0, p, t);
 		if (left == ERROR || down == ERROR)
 			return ERROR;
 	}
 	// Lewy dolny róg.
 	else if (p->row == length - 1 && p->column == 0) {
-		right = checkPosition(tile, R, 0, 1, p, t);
-		up = checkPosition(tile, U, 1, 0, p, t);
+		right = checkPosition(tile, R, L, 0, 1, p, t);
+		up = checkPosition(tile, U, D, 1, 0, p, t);
 		if (right == ERROR || up == ERROR)
 			return ERROR;
 	}
 	// Prawy dolny róg.
 	else if (p->row == length - 1 && p->column == length - 1) {
-		left = checkPosition(tile, L, 0, -1, p, t);
-		up = checkPosition(tile, U, 1, 0, p, t);
+		left = checkPosition(tile, L, R, 0, -1, p, t);
+		up = checkPosition(tile, U, D, 1, 0, p, t);
 		if (left == ERROR || up == ERROR)
 			return ERROR;
 	}
 	// Pierwszy rząd.
 	else if (p->row == 0) {
-		right = checkPosition(tile, R, 0, 1, p, t);
-		left = checkPosition(tile, L, 0, -1, p, t);
-		down = checkPosition(tile, D, -1, 0, p, t);
+		right = checkPosition(tile, R, L, 0, 1, p, t);
+		left = checkPosition(tile, L, R, 0, -1, p, t);
+		down = checkPosition(tile, D, U, -1, 0, p, t);
 		if (right == ERROR || left == ERROR || down == ERROR)
 			return ERROR;
 	}
 	// Ostatni rząd.
 	else if (p->row == length - 1) {
-		right = checkPosition(tile, R, 0, 1, p, t);
-		left = checkPosition(tile, L, 0, -1, p, t);
-		up = checkPosition(tile, U, 1, 0, p, t);
+		right = checkPosition(tile, R, L, 0, 1, p, t);
+		left = checkPosition(tile, L, R, 0, -1, p, t);
+		up = checkPosition(tile, U, D, 1, 0, p, t);
 		if (right == ERROR || left == ERROR || up == ERROR)
 			return ERROR;
 	}
 	// Pierwsza kolumna.
 	else if (p->column == 0) {
-		right = checkPosition(tile, R, 0, 1, p, t);
-		up = checkPosition(tile, U, 1, 0, p, t);
-		down = checkPosition(tile, D, -1, 0, p, t);
+		right = checkPosition(tile, R, L, 0, 1, p, t);
+		up = checkPosition(tile, U, D, 1, 0, p, t);
+		down = checkPosition(tile, D, U, -1, 0, p, t);
 		if (right == ERROR || down == ERROR || up == ERROR)
 			return ERROR;
 	}
 	// Ostatnia kolumna.
 	else if (p->column == length - 1) {
-		left = checkPosition(tile, L, 0, -1, p, t);
-		up = checkPosition(tile, U, 1, 0, p, t);
-		down = checkPosition(tile, D, -1, 0, p, t);
+		left = checkPosition(tile, L, R, 0, -1, p, t);
+		up = checkPosition(tile, U, D, 1, 0, p, t);
+		down = checkPosition(tile, D, U, -1, 0, p, t);
 		if (left == ERROR || down == ERROR || up == ERROR)
 			return ERROR;
 	}
 	else {
-		right = checkPosition(tile, R, 0, 1, p, t);
-		left = checkPosition(tile, L, 0, -1, p, t);
-		up = checkPosition(tile, U, 1, 0, p, t);
-		down = checkPosition(tile, D, -1, 0, p, t);
+		right = checkPosition(tile, R, L, 0, 1, p, t);
+		left = checkPosition(tile, L, R, 0, -1, p, t);
+		up = checkPosition(tile, U, D, 1, 0, p, t);
+		down = checkPosition(tile, D, U, -1, 0, p, t);
 		if (right == ERROR || left == ERROR || up == ERROR || down == ERROR)
 			return ERROR;
 	}
