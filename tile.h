@@ -12,6 +12,7 @@
 * Structure containing blocks of tiles and information about the rotation.
 */
 struct Tile {
+	int size;
 	char* tiles[tiles_number];
 	char rotate;	// Information about rotation.
 	int no_tiles;	// Information amount of tiles left.
@@ -82,5 +83,9 @@ Tiles* checkNumberOfTiles(Tiles *t);
 *
 */
 Tiles* freeMemory(Tiles *t);
+
+/**
+*
+*/
 
 #endif
