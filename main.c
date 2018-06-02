@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
-	int counter = 0, mode;
+int main(int argc, char *argv[]) {
+	int counter = 0;
 
 	Tiles program, *t;
 	t = &program;
@@ -24,23 +24,27 @@ int main() {
 	Board gamep1, *player1;
 	Board gamep2, *player2;
 
-	mode = selectMode();
-	if (mode == 0) {
+	if (argc > 2) {
 		// AUTO MODE.
 		player = &gameauto;
-		board_auto = fopen("board_auto.txt", "r");
-		tile_auto = fopen("tile_auto.txt", "r");
+
+		board_auto = fopen(argv[2], "r");
+		tile_auto = fopen(argv[1], "r");
 
 		makeMoveAUTO(player, t, board_auto, tile_auto);
+		fclose(tile_auto);
+		fclose(board_auto);
 
-		tile_auto = fopen("tile_auto.txt", "w");
+		tile_auto = fopen(argv[1], "w");
 		fillTileFile(tile_auto, t);
 		fclose(tile_auto);
-		board_auto = fopen("board_auto.txt", "w");
+
+		board_auto = fopen(argv[2], "w");
 		fillBoardFile(board_auto, player);
 		fclose(board_auto);
+
 	}
-	else if (mode == 1) {
+	else {
 		// INTERACTIVE MODE.
 		tile = fopen("tile.txt", "r");
 		initializeTileArray(tile, t);
