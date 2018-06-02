@@ -26,6 +26,7 @@ void printBoard(Board *p) {
 		}
 		for (j = 0; j < length; j++) {
 			// Prints string without new line.
+			
 			printf("%.*s ", tile_length - 1, p->board[i][j]);
 		}
 		printf("\n");
@@ -109,7 +110,6 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 	if (t->no_tiles == NO_TILES) {
 		return NO_TILES;
 	}
-	
 	// If this is the first move you can place tile anywhere.
 	if (p->firstPlacing == 0) {
 		// Changing the information about the first placing since the player made the first move.
@@ -122,7 +122,7 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 		printf("This place is already taken\n");
 		return ERROR;
 	}
-
+	
 	// Checks if selected tile fits.
 	//R = 1, L = 3, U = 0, D = 2;	from type of ennum (tile.h)
 	// Lewy górny róg.
@@ -202,9 +202,9 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 	return OK;
 }
 
-/* Funkcja sprwdza czy klocek na miejscu (row, column) patrz¹c od wybranego klocka (int tile) pasuje do niego.
-Na przyk³ad dla row = 0, column = 1 funkcja sprawdza klocek w kolumnie na prawo.
-Dla row = 1, column = 1 funkcja sprawdza klocek w rzêdzie powy¿ej. */
+/* Funkcja sprwdza czy klocek na miejscu (row, column) patrząc od wybranego klocka (int tile) pasuje do niego.
+Na przykład dla row = 0, column = 1 funkcja sprawdza klocek w kolumnie na prawo.
+Dla row = 1, column = 1 funkcja sprawdza klocek w rzędzie powyżej. */
 
 int checkPosition(int tile, int directiontile, int directionplaced, int row, int column, Board *p, Tiles *t) {
 	const char *empty = "00000";
@@ -218,7 +218,7 @@ int checkPosition(int tile, int directiontile, int directionplaced, int row, int
 			return OK;
 	}
 
-	//return 0;
+	return 0;
 }
 
 
