@@ -7,13 +7,12 @@
 #include <string.h>
 
 
-/* Function reads tiles from the file and put them into array. */
 Tiles* initializeTileArray(FILE *tile, Tiles *t) {
 	char s = '0';
 	int i = 0, k;
 
 	if (tile == NULL) {
-		printf("Fail to open tile.txt\n");
+		printf("Fail to open tile file.\n");
 		exit(-1);
 	}
 
@@ -23,14 +22,18 @@ Tiles* initializeTileArray(FILE *tile, Tiles *t) {
 			s = getc(tile);
 			if (s == EOF)
 				break;
+			
 			temp[k] = s;
 		}
 		temp[k] = '\0';
 		t->tiles[i] = temp;
+		
 		if (s == EOF)
 			break;
+
 		i++;
 	}
+	t->size = i;
 
 	return t;
 }
@@ -49,7 +52,7 @@ int printAvailableTiles(Tiles *t) {
 	}
 	// Printing available tiles.
 	printf("Available Tiles: \n");
-	for (int i = 0; i < tiles_number; i++) {
+	for (int i = 0; i < t->size; i++) {
 		if (strcmp(t->tiles[i], empty) != 0)
 			printf("%d: %s", i + 1, t->tiles[i]);
 	}
@@ -71,7 +74,7 @@ int printAvailableTiles2(Tiles *t) {
 	printf("Available Tiles: \n");
 
 	printf(" ");
-	for (j = 0; j < tiles_number; j++) {
+	for (j = 0; j < t->size; j++) {
 		if (strcmp(t->tiles[j], empty) != 0) {
 			if (j<9)
 				printf("%d: %c  |", j + 1, t->tiles[j][U]);
@@ -81,7 +84,7 @@ int printAvailableTiles2(Tiles *t) {
 	}
 	printf("\n");
 	printf(" ");
-	for (j = 0; j < tiles_number; j++) {
+	for (j = 0; j < t->size; j++) {
 		if (strcmp(t->tiles[j], empty) != 0) {
 			if (j < 9)
 				printf(" %c %c %c|", t->tiles[j][L], t->tiles[j][N], t->tiles[j][R]);
@@ -91,7 +94,7 @@ int printAvailableTiles2(Tiles *t) {
 	}
 	printf("\n");
 	printf(" ");
-	for (j = 0; j < tiles_number; j++) {
+	for (j = 0; j < t->size; j++) {
 		if (strcmp(t->tiles[j], empty) != 0) {
 			if (j<9)
 				printf("   %c  |", t->tiles[j][D]);
@@ -201,7 +204,7 @@ int canChooseTile(int number, Tiles *t) {
 		return 0;
 	}
 	else
-		return 1;
+		return OK;
 }
 
 
@@ -210,7 +213,7 @@ Tiles* checkNumberOfTiles(Tiles *t) {
 	int tile = 0;
 
 	// Comparing each string from tiles[] array with *empty ("00000") string.
-	for (int i = 0; i < tiles_number; i++) {
+	for (int i = 0; i < t->size; i++) {
 		/* If one of the stings form tiles[] array is different from *empty string 
 		there is at least one tile. */
 		if (strcmp(t->tiles[i], empty) != 0) {
@@ -224,6 +227,7 @@ Tiles* checkNumberOfTiles(Tiles *t) {
 
 	return t;
 }
+
 
 Tiles* freeMemory(Tiles *t) {
 	for (int i = 0; i < tiles_number; i++) {
