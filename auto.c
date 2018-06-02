@@ -84,7 +84,9 @@ void fillTileFile(FILE *tile, Tiles *t) {
 
 /* Function places selected tile in the middle of the board as a first move. */
 Board* firstMove(int tile, Tiles *t, Board *p) {
-	p->board[(length / 2) - 1][length- 1] = t->tiles[tile];
+	//p->board[(length / 2) - 1][length- 1] = t->tiles[tile];
+	// Skoro może być >14 klocków to lepiej zacząć stawiać od samego dołu.
+	p->board[length - 1][length- 1] = t->tiles[tile];
 
 	return p;
 }
