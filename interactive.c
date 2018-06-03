@@ -80,10 +80,10 @@ Board* selectPlace(Board *p) {
 	return p;
 }
 
-Tiles* makeMove(Board *p, Tiles *t, FILE *board_player, FILE *tile) {
+Tiles* makeMove(Board *p, Tiles *t) {
 	int stop, number;
 
-	//printBoard(p);
+	
 	printBoard2(p);
 	stop = printAvailableTiles2(t);
 	if (stop == OK) {
