@@ -11,7 +11,7 @@
 /**
 *
 */
-Board* initializeBoard(FILE *board_player, Board *p);
+Board* initializeBoard(FILE *board_auto, Board *p);
 
 /**
 *
@@ -51,7 +51,7 @@ int canPlaceTileAUTO(int number, Board *p, Tiles *t);
 /**
 *
 */
-Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_player, FILE *tile);
+Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_auto, FILE *tile);
 
 
 #endif
