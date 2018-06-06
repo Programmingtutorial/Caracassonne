@@ -33,59 +33,67 @@ enum {
 };
 
 
+
 /**
-*
+* Function reads tiles from the file and put them into array.
 */
 Tiles* initializeTileArray(FILE *tile, Tiles *t);
 
+
 /**
-*
+* Functions printing available tiles.
+The second one prints it in a way which is easier for a user to read.
 */
 int printAvailableTiles(Tiles *t);
 int printAvailableTiles2(Tiles *t);
 
+
 /**
-*
+* Function changes used tiles to "00000" string.
+It makes the tile unpossible to be used again.
 */
 Tiles* deleteUsedTile(int number, Tiles *t);
 
+
 /**
-*
+* Function rotates tile according to the given direction.
 */
 Tiles* rotateTile(int number, Tiles *t);
 
+
 /**
-*
+* Function rotates tile to the right.
 */
 Tiles* rotateRight(int number, Tiles *t);
 
+
 /**
-*
+* Function rotates tile to the left.
 */
 Tiles* rotateLeft(int number, Tiles *t);
 
+
 /**
-*
+* Function rotates tile down.
 */
 Tiles* rotateDown(int number, Tiles *t);
 
+
 /**
-*
+* Function rotates tile up.
 */
 int canChooseTile(int number, Tiles *t);
 
+
 /**
-*
+* Function checks if there is any tile left.
 */
 Tiles* checkNumberOfTiles(Tiles *t);
 
-/**
-*
-*/
-Tiles* freeMemory(Tiles *t);
 
 /**
-*
+* Function free allocated memory while reading tiles form a file.
 */
+Tiles* freeMemory(Tiles *t);
 
 #endif
