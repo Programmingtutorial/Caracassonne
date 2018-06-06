@@ -1,21 +1,13 @@
 #include "auto.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "tile.h"
+#include "board.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
 
-/*
-Zrób funkcje do stawiania klocka. Najpierw sprawdza czy jest ju¿ coœ na planszy. 
-Jeœli nie to stawiam w œrodkowym wierszu, w ostatniej kolumnie. 
-Jeœli tak to weŸ pierwszy z tablicy klocków i spróbuj ustawiæ go na znalezionym miejscu. 
-Spróbuj wszystkich rotacji. 
-Jeœli nie pasuje weŸ kolejny i zrób to samo.
-Jak wykorzystasz wszystkie klocki to znajd¿ inne miejsce i zrób to samo.
-*/
 
 Board* initializeBoard(FILE *board_auto, Board *p) {
 	int i, j, k = 0, first = 0;
@@ -83,6 +75,7 @@ void fillTileFile(FILE *tile, Tiles *t) {
 }
 
 /* Function places selected tile in the middle of the board as a first move. */
+
 Board* firstMove(int tile, Tiles *t, Board *p) {
 	p->board[length - 1][length- 1] = t->tiles[tile];
 
@@ -116,7 +109,7 @@ Board* checkBoard(Board *p) {
 				p->firstPlacing = 1;
 				printf("i: %d, j: %d\n", i, j);
 				if (j > 0) {
-					p->column = j - 1;	// O jedn¹ kolumnê w lewo od ju¿ postawionego klocka.
+					p->column = j - 1;	// One column to the left form already placed tile.
 					p->row = i;
 				}
 				else {
@@ -143,6 +136,7 @@ Board* checkBoard(Board *p) {
 
 /* Function takes first available tile from tile array.
 It set information about taken tile number in Tiles structure (checkedTile). */
+
 int takeTile(int number, Tiles *t) {
 	int i;
 	const char *empty = "00000\n";
@@ -161,7 +155,7 @@ int canPlaceTileAUTO(int number, Board *p, Tiles *t) {
 	if (canplaceTile(number, p, t) == OK) {
 		return OK;
 	}
-	else {	// Tu obracam klocek w ka¿d¹ stronê i patrze czy pasuje 
+	else {	// Tu obracam klocek w kaÂ¿dÂ¹ stronÃª i patrze czy pasuje 
 		rotateRight(number, t);
 		if (canplaceTile(number, p, t) == OK) {
 			return OK;
@@ -214,11 +208,9 @@ Tiles* makeMoveAUTO(Board *p, Tiles *t, FILE *board_auto, FILE *tile) {
 			}
 			if (placed == OK) {
 				placeTile(number, t, p);
-				//printf("PLACED");
 				deleteUsedTile(number, t);
 			}
 		}
-		printBoard2(p);
 	}
 	else {
 		printf("There are no tiles left!\n");
