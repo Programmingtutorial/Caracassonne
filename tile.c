@@ -1,12 +1,11 @@
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Project\Project/auto.h"
+#include "tile.h"
+#include "board.h"
+#include "auto.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
-// Funkcja zapisuje w tablicy klocków wszystkie klocki i zwraca wielkoœæ tablicy.
 
 /* Function reads tiles from the file and put them into array. */
 Tiles* initializeTileArray(FILE *tile, Tiles *t) {
