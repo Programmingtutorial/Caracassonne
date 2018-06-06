@@ -1,6 +1,6 @@
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Board\Board/board.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Tiles\Project1/tile.h"
-#include "C:\Users\kjabl\OneDrive\Pulpit\EiTI\Carcassonne\Interactive\Interactive\interactive.h"
+#include "board.h"
+#include "tile.h"
+#include "interactive.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -125,72 +125,63 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 	
 	// Checks if selected tile fits.
 	//R = 1, L = 3, U = 0, D = 2;	from type of ennum (tile.h)
-	// Lewy górny róg.
+	// Left up corner.
 	if (p->row == 0 && p->column == 0) {
 		right = checkPosition(tile, R, L, 0, 1, p, t);
-		//down = checkPosition(tile, U, D, -1, 0, p, t);
 		down = checkPosition(tile, D, U, 1, 0, p, t);
 		if (right == ERROR || down == ERROR)
 			return ERROR;
 	}
-	// Prawy górny róg.
+	// Right up corner.
 	else if (p->row == 0 && p->column == length - 1) {
 		left = checkPosition(tile, L, R, 0, -1, p, t);
-		//down = checkPosition(tile, U, D, -1, 0, p, t);
 		down = checkPosition(tile, D, U, 1, 0, p, t);
 		if (left == ERROR || down == ERROR)
 			return ERROR;
 	}
-	// Lewy dolny róg.
+	// Left down corner.
 	else if (p->row == length - 1 && p->column == 0) {
 		right = checkPosition(tile, R, L, 0, 1, p, t);
-		//up = checkPosition(tile, D, U, 1, 0, p, t);
 		up = checkPosition(tile, U, D, -1, 0, p, t);
 		if (right == ERROR || up == ERROR)
 			return ERROR;
 	}
-	// Prawy dolny róg.
+	// Right down corner.
 	else if (p->row == length - 1 && p->column == length - 1) {
 		left = checkPosition(tile, L, R, 0, -1, p, t);
-		//up = checkPosition(tile, D, U, 1, 0, p, t);
 		up = checkPosition(tile, U, D, -1, 0, p, t);
 		if (left == ERROR || up == ERROR)
 			return ERROR;
 	}
-	// Pierwszy rz¹d.
+	// The first row.
 	else if (p->row == 0) {
 		right = checkPosition(tile, R, L, 0, 1, p, t);
 		left = checkPosition(tile, L, R, 0, -1, p, t);
-		//down = checkPosition(tile, U, D, -1, 0, p, t);
 		down = checkPosition(tile, D, U, 1, 0, p, t);
 		if (right == ERROR || left == ERROR || down == ERROR)
 			return ERROR;
 	}
-	// Ostatni rz¹d.
+	// The last row.
 	else if (p->row == length - 1) {
 		right = checkPosition(tile, R, L, 0, 1, p, t);
 		left = checkPosition(tile, L, R, 0, -1, p, t);
-		//up = checkPosition(tile, U, D, -1, 0, p, t);
 		up = checkPosition(tile, U, D, -1, 0, p, t);
 		if (right == ERROR || left == ERROR || up == ERROR)
 			return ERROR;
 	}
-	// Pierwsza kolumna.
+	// The first column.
 	else if (p->column == 0) {
 		right = checkPosition(tile, R, L, 0, 1, p, t);
-		//up = checkPosition(tile, D, U, 1, 0, p, t);
 		up = checkPosition(tile, U, D, -1, 0, p, t);
-		//down = checkPosition(tile, D, U, 1, 0, p, t);
 		down = checkPosition(tile, D, U, 1, 0, p, t);
 		if (right == ERROR || down == ERROR || up == ERROR)
 			return ERROR;
 	}
-	// Ostatnia kolumna.
+	// The last column.
 	else if (p->column == length - 1) {
 		left = checkPosition(tile, L, R, 0, -1, p, t);
 		up = checkPosition(tile, D, U, 1, 0, p, t);
 		down = checkPosition(tile, U, D, -1, 0, p, t);
-		//down = checkPosition(tile, D, U, 1, 0, p, t);
 		if (left == ERROR || down == ERROR || up == ERROR)
 			return ERROR;
 	}
@@ -210,10 +201,6 @@ int canplaceTile(int tile, Board *p, Tiles *t) {
 
 	return OK;
 }
-
-/* Funkcja sprwdza czy klocek na miejscu (row, column) patrz¹c od wybranego klocka (int tile) pasuje do niego.
-Na przyk³ad dla row = 0, column = 1 funkcja sprawdza klocek w kolumnie na prawo.
-Dla row = 1, column = 1 funkcja sprawdza klocek w rzêdzie powy¿ej. */
 
 int checkPosition(int tile, int directiontile, int directionplaced, int row, int column, Board *p, Tiles *t) {
 	const char *empty = "00000";
